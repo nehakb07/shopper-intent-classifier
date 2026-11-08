@@ -18,7 +18,7 @@ on the same dataset, compared on six metrics, and demonstrated in a Streamlit we
   80/20 stratified train/test split, random_state = 42.
 
 ## c. GitHub repository link
-TODO: paste your repository URL here
+https://github.com/nehakb07/shopper-intent-classifier
 
 ## d. Models used
 
@@ -34,15 +34,15 @@ TODO: paste your repository URL here
 ### Observations
 | ML Model Name | Observation about model performance |
 |---|---|
-| Logistic Regression | TODO: write your own observation |
-| Decision Tree | TODO: write your own observation |
-| KNN | TODO: write your own observation |
-| Naive Bayes | TODO: write your own observation |
-| Support Vector Machine | TODO: write your own observation |
-| **Overall winner for this dataset** | TODO: name the winner and justify it with your metrics |
+| Logistic Regression | It reached 0.881 accuracy and the highest precision of all five models (0.743), so most of the sessions it flags as purchases really are purchases. Its recall is only 0.356, so it misses most real buyers (246 of 382 in the test set). The train-test accuracy gap is just 0.004, so it generalizes well but is probably limited by its linear decision boundary. |
+| Decision Tree | It performed best on accuracy (0.896), AUC (0.909), F1 (0.624) and MCC (0.570). Its recall of 0.555 is the second highest after Naive Bayes, so it finds many more buyers than Logistic Regression or KNN. With max_depth=6 the train-test gap is a modest 0.021, so some overfitting remains but is controlled. Trees can capture non-linear patterns and interactions between features. |
+| KNN | It reached 0.874 accuracy, but its AUC (0.799) and MCC (0.432) are well below the top models, and its recall is only 0.364. It has the largest train-test gap (0.025). Distance-based methods tend to struggle with many features and with one-hot encoded columns, which probably hurts it here. |
+| Naive Bayes | It has the lowest accuracy (0.674) and lowest MCC (0.325), but the highest recall (0.791), so it catches most buyers. Its precision is only 0.294, meaning it predicts "purchase" far too often and produces many false alarms. Some features are likely correlated, such as BounceRates and ExitRates, which would break its independence assumption. |
+| Support Vector Machine | It was second best on F1 (0.558) and MCC (0.509), with accuracy of 0.886. Its recall (0.463) is better than Logistic Regression's, though its AUC (0.873) and precision are slightly lower. The RBF kernel lets it fit non-linear patterns that Logistic Regression can't, but it still trails the Decision Tree. |
+| **Overall winner: Decision Tree** | It is best on four of the six metrics: accuracy, AUC, F1 and MCC. The classes are imbalanced (84.5% no purchase, 15.5% purchase), so MCC and F1 matter more than accuracy, and the Decision Tree leads both. If false alarms matter most, Logistic Regression has the best precision. If missing buyers is the bigger cost, Naive Bayes has the best recall. |
 
 ## Streamlit app
-TODO: paste your deployed Streamlit link here
+https://shopper-intent-ml-app.streamlit.app/
 
 ## Repository structure
 ```
