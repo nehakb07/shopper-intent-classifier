@@ -122,7 +122,14 @@ with tab2:
         rows.append({"Model": name, **m})
     table = pd.DataFrame(rows).set_index("Model")
     st.dataframe(table.round(4))
-    st.bar_chart(table[["Accuracy", "F1", "MCC"]])
+
+    fig2, ax2 = plt.subplots(figsize=(8, 4))
+    table[["Accuracy", "F1", "MCC"]].plot(kind="bar", ax=ax2)
+    ax2.set_ylim(0, 1)
+    ax2.set_ylabel("Score")
+    plt.xticks(rotation=20)
+    st.pyplot(fig2)
+
     st.success(f"Highest MCC on this data: {table['MCC'].idxmax()}")
 
 with tab3:
