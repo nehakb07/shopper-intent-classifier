@@ -52,7 +52,7 @@ TODO: paste your deployed Streamlit link here
 ├── test_data.csv
 ├── model_comparison.csv
 ├── model/   (5 .joblib pipelines)
-└── <this notebook>.ipynb
+└── ML_Assignment_2.ipynb
 ```
 
 ## Run locally
